@@ -4,7 +4,12 @@
 > Every action you take is optimal. Every consequence is inevitable.
 
 ---
+## Live System
 
+**Deployment**: https://optimizer-silent-state-1o3zwidxn-shuva-0s-projects.vercel.app/
+**Repository**: https://github.com/shuva-0/optimizer-silent-state
+
+---
 ## What Is This?
 
 **OPTIMIZER — Silent State** is a single-player browser simulation built in React + Vite.
