@@ -149,9 +149,9 @@ optimizer-silent-state/
     ├── dashboard.jsx      # Stability display, metric grid, delta viz, delay queue
     ├── controls.jsx       # Action buttons, driven by ACTIONS map
     ├── styles.css         # All styling — dark minimal aesthetic
-    ├── gameLoop.js        # Turn execution — DO NOT MODIFY
-    ├── stateManager.js    # State transitions, equations — DO NOT MODIFY
-    └── decisionEngine.js  # Action definitions, memory amplification — DO NOT MODIFY
+    ├── gameLoop.js        # Turn execution
+    ├── stateManager.js    # State transitions, equations 
+    └── decisionEngine.js  # Action definitions, memory amplification 
 ```
 
 ---
