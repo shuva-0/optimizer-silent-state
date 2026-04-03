@@ -1,0 +1,404 @@
+/* ─── Reset & Base ──────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #000000;
+  color: #e0e0e0;
+  font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── App Shell ─────────────────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 520px;
+  width: 100%;
+  transition: opacity 1s ease;
+  animation: fadeIn 0.6s ease;
+}
+
+.game-container.processing {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────────── */
+.app-header {
+  text-align: center;
+}
+
+.app-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.app-turn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #666;
+  letter-spacing: 0.25em;
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+}
+
+/* ─── System Message ───────────────────────────────────────────────────────── */
+.system-message {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #e0e0e0;
+  text-align: center;
+  min-height: 1.4rem;
+  transition: color 0.4s ease;
+}
+
+/* ─── Autonomy / Silence Warnings ───────────────────────────────────────────── */
+.autonomy-warning {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ff5252;
+  text-align: center;
+}
+
+.silence-warning {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ff5252;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Dashboard ─────────────────────────────────────────────────────────────── */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  width: 100%;
+}
+
+/* State label */
+.state-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.28em;
+  color: #aaaaaa;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Stability */
+.stability-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stability-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.stability-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 6rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color 0.4s ease;
+}
+
+.stability-value.negative { color: #666; }
+.stability-value.low      { color: #aaa; }
+.stability-value.high     { color: #fff; }
+
+/* Metrics grid */
+.dashboard-metrics {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid #1a1a1a;
+}
+
+.metric-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.metric-delta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+/* ─── Delay Queue ────────────────────────────────────────────────────────────── */
+.delay-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.delay-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.delay-indicator {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.delay-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #aaa;
+  border: 1px solid #222;
+  padding: 0.2rem 0.6rem;
+  text-transform: none;
+}
+
+/* ─── Trajectory ────────────────────────────────────────────────────────────── */
+.trajectory {
+  width: 100%;
+  border-top: 1px solid #111;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.trajectory-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: #444;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.trajectory-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.trajectory-row {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: #777;
+  letter-spacing: 0.04em;
+}
+
+.traj-key {
+  color: #555;
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
+
+/* ─── Controls ──────────────────────────────────────────────────────────────── */
+.controls {
+  width: 100%;
+}
+
+.controls-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #111;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000;
+  transition: background 0.3s ease;
+}
+
+.control-button {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ccc;
+  background: transparent;
+  border: none;
+  padding: 1.2rem 0.8rem 0.4rem;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.control-button:hover:not(:disabled) {
+  color: #fff;
+  background: #1a1a1a;
+}
+
+.control-group:hover:not(:has(:disabled)) {
+  background: #0d0d0d;
+}
+
+.control-button:active:not(:disabled) {
+  color: #fff;
+}
+
+.control-button:disabled {
+  color: #2a2a2a;
+  cursor: default;
+}
+
+.preview {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  color: #3a3a3a;
+  padding: 0.3rem 0.8rem 1rem;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.control-group:hover:not(:has(:disabled)) .preview {
+  color: #666;
+}
+
+/* ─── End Screen ────────────────────────────────────────────────────────────── */
+.end-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  animation: fadeIn 1.5s ease;
+  text-align: center;
+}
+
+.end-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: #444;
+  text-transform: uppercase;
+}
+
+.end-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.end-detail {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: #aaa;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.end-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #555;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.restart-button {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  background: transparent;
+  border: 1px solid #222;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.restart-button:hover {
+  color: #ccc;
+  border-color: #555;
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
